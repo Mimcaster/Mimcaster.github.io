@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="Ryan Batschelet" content="">
+
+    <title>Encryption</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap-4.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mystyle.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </head>
+  <script>
+  		$(document).ready(function()
+  		{
+							//Puts the user in the EncryptedSubmissionView
+  				$("#EncryptionSubmissionView").show();
+          $("#EncryptionImageView").hide();
+  				$("#EncryptedOutputView").hide();
+
+          var dataToBeEncrypted = "";
+          var isFile = 0;
+
+
+          $("#ImageButton").click(function()
+          {										//Puts the user in the EncryptedOutputView after they submit data
+
+
+$("#EncryptionSubmissionView").hide();
+$("#EncryptionImageView").show();
+$("#EncryptedOutputView").hide();
+
+          });
+
+          $("#SubmissionButton").click(function()
+          { //Makes sure that there is an image to have a file embedded into it, sends it to the proper javascript method,
+            $("#EncryptionSubmissionView").hide();
+            $("#EncryptionImageView").hide();
+            $("#EncryptedOutputView").show();
+
+            }
+
+          });
+
+          $("#SubmitAgain").click(function()
+          {										//Puts the user in the EncryptedSubmissionView after they submit data
+                 $("#EncryptionSubmissionView").show();
+                 $("#EncryptionImageView").hide();
+                 $("#EncryptedOutputView").hide();
+          });
+
+      });
+
+  	</script>
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <a class="navbar-brand" href="#">Stegosaurus</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Encryption <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="decryption.html">Decryption</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container">
+      <br><br><br><br><br>
+      <!--EncryptionSubmissionView-->
+      <form id="EncryptionSubmissionView">
+        <h1>Stegosaurus Encryption</h1>
+
+        <p>Upload the file you want to hide in the image</p>
+        <input type="file" id="inputfile" name="inputFile" ></input>
+        <br><br><br>
+
+        <h6>Or</h6>
+        <p>Type in the message you want to hide</p>
+        <div>
+          <input type="text" id="intputtext" name="inputText" ></input>
+        </div>
+        <br>
+        <div>
+          <button id="ImageButton" class="btn btn-lg btn-primary btn-block" type="button" style="margin:2%; background-color: #517664; border-color:#517664; display:inline-block;">Enter</button>
+        </div>
+        <p id="fileError"></p>
+      </form>
+      <form id="EncryptionImageView">
+        <h1>Image Selection</h1>
+        <br>
+        <!--<p class="lead">You can upload a link to a picture you want to use for encrytion, or the image itself.</p>-->
+        <p>Upload the image you want to hide the file in</p>
+        <input type="file" id="inputimagefile" name="inputImageFile" ></input>
+
+        <p>Or</p>
+        <div style="text-align:center"><input type="text" name="inputLinkText" id="inputLink" class="form-control" style="display:inline-block;" placeholder="Enter image link here"></div>
+
+        <p>Or</p>
+        <p class="lead">Choose one of these default images.</p>
+        <div id="DefaultImageSelector">
+          <div class="defaultChoice">
+              <input type="radio" id="defaultImage1" class="defaultImage" name="defaultImage" value="1">
+              <label class="defaultImageLabel" for="defaultImage1"><img src="images/default1.jpg"></img></label>
+          </div>
+
+          <div class="defaultChoice">
+              <input type="radio" id="defaultImage2" class="defaultImage" name="defaultImage" value="2">
+              <label class="defaultImageLabel" for="defaultImage2"><img src="images/default2.jpg"></img></label>
+          </div>
+
+          <div class="defaultChoice">
+            <input type="radio" id="defaultImage3" class="defaultImage" name="defaultImage" value="3">
+            <label class="defaultImageLabel" for="defaultImage3"><img src="images/default3.png"></img></label>
+          </div>
+
+          <div class="defaultChoice">
+            <input type="radio" id="defaultImage4" class="defaultImage" name="defaultImage" value="4">
+            <label class="defaultImageLabel" for="defaultImage4"><img src="images/default4.jpg"></img></label>
+          </div>
+        </div>
+        <br><br><br>
+        <p>Type in the password you want to use to get the file out of the image later</p>
+        <input type="password" name="password" id="inputPassword" class="form-control" style="display:inline-block;" placeholder="Password">
+        <br>
+        <button id="SubmissionButton" class="btn btn-lg btn-primary btn-block" type="button" style="margin:2%; background-color: #517664; border-color:#517664; display:inline-block;">Enter</button>
+      </form>
+      <!--EncryptedOutputView-->
+      <form id="EncryptedOutputView" class="starter-template">
+        <h1>Encrypted Image</h1>
+        <img id="outputfile" src="images/Hacker1.jpg" style="max-width:90%; height:auto;"> <!--Placeholder image-->
+        <p id="outputlink">Placeholder link</p>    <!--Where the link goes-->
+        <button id="SubmitAgain" type="submit" class="btn btn-lg btn-primary btn-block" style="margin:2%; background-color: #517664; border-color:#517664; display:inline-block;">Go Back</button>
+      </form>
+
+    </main><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="css/bootstrap-4.1.3-dist/popper.min.js"></script>
+    <script src="css/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <script src="js/encryption.js"></script>
+    <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+
+    <script>
+      function changeView(encryptedFileLink)
+      {
+
+
+      }
+
+      function findInput()
+      {
+        var encryptionKey = $("input[name='password']").val();
+        var dataToBeEncrypted = $("input[name='inputFile']").val();
+
+      }
+
+      function takeLinkInput(linkToImage, unencryptedData, encryptionKey)
+      {
+        //retrieve image file from location
+          takeInput("images/default4.jpg", unencryptedData, encryptionKey);
+      }
+
+      function takeDefaultInput(unencryptedData, encryptionKey)
+      {
+        var defaultSelected = $("input[name='defaultImage']:checked").val();
+
+        if(defaultSelected == 1)
+          takeInput("images/default1.jpg", unencryptedData, encryptionKey);
+        else if(defaultSelected == 2)
+          takeInput("images/default2.jpg", unencryptedData, encryptionKey);
+        else if(defaultSelected == 3)
+          takeInput("images/default3.png", unencryptedData, encryptionKey);
+        else if(defaultSelected == 4)
+          takeInput("images/default4.jpg", unencryptedData, encryptionKey);
+      }
+
+      function takeFileInput(imageFile, unencryptedData, encryptionKey)
+      {
+        alert("using uploaded image file");
+        takeInput(imageFile, unencryptedData, encryptionKey);
+      }
+    </script>
+    <script type="text/javascript" src="library/sjcl.js"></script>
+
+  </body>
+</html>

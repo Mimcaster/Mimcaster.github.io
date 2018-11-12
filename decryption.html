@@ -24,8 +24,9 @@
           $("#SubmissionButton").click(function()
           {										//Puts the user in the EncryptedOutputView after they submit data
 
-                $("#DecryptionSubmissionView").hide();
-                $("#DecryptedOutputView").show();
+            $("#DecryptionSubmissionView").hide();
+            $("#DecryptedOutputView").show();
+
 
           });
 
@@ -69,12 +70,12 @@
             <p class="lead">You can upload a link to a picture you want to use for decrytion, or the image itself.</p>
 
             <p>Upload the image file you want to extract data from</p>
-            <input type="file" id=inputfile name="inputfile" ></input>
+            <input type="file" id="inputFile" name="inputFile" ></input>
             <p>Or</p>
-            <div style="text-align:center"><input type="text" name="inputLinkText" id="inputLink" class="form-control" style="display:inline-block;" placeholder="Enter image link here"></div>
+            <div style="text-align:center"><input type="text" name="inputLinkText" id="inputLink" class="form-control" style="display:inline-block;" placeholder="Image Link"></div>
             <br><br><br><br><br>
             <p>Type in the password you want to use to get the file out of the image later</p>
-            <input type="password" name="password" id="inputPassword" class="form-control" style="display:inline-block;" placeholder="Enter encryption password here">
+            <input type="password" name="password" id="inputPassword" class="form-control" style="display:inline-block;" placeholder="Password">
             <br>
             <button id="SubmissionButton" class="btn btn-lg btn-primary btn-block" type="button" style="margin:2%; background-color: #517664; border-color:#517664; display:inline-block;">Enter Data</button>
           </form>
@@ -95,6 +96,10 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="css/bootstrap-4.1.3-dist/popper.min.js"></script>
     <script src="css/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+    <script src="js/decryption.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <script type="text/javascript" src="library/sjcl.js"></script>
 
     <script>
       function takeDecryptionOutput(decryptedFile)
